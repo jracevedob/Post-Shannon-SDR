@@ -29,15 +29,19 @@ We are going to be really content and encouraged if you can cite our scientific 
 and distribute our works among your research collaborators and colleagues.
 
 ```
-@article{bookchapter2020acevedo,
-  title={Reducing latency in virtual machines: Enabling tactile internet for human-machine co-working},
-  author={Xiang, Zuo and Gabriel, Frank and Urbano, Elena and Nguyen, Giang T and Reisslein, Martin and Fitzek, Frank HP},
-  journal={IEEE Journal on Selected Areas in Communications},
-  volume={37},
-  number={5},
-  pages={1098--1116},
-  year={2019},
-  publisher={IEEE}
+@incollection{ACEVEDO2020413,
+title = {Chapter 26 - Integrating software-defined radios},
+editor = {Frank H.P. Fitzek and Fabrizio Granelli and Patrick Seeling},
+booktitle = {Computing in Communication Networks},
+publisher = {Academic Press},
+pages = {413-427},
+year = {2020},
+isbn = {978-0-12-820488-7},
+doi = {https://doi.org/10.1016/B978-0-12-820488-7.00042-6},
+url = {https://www.sciencedirect.com/science/article/pii/B9780128204887000426},
+author = {Javier Acevedo and Marian Ulbricht and Dongho You},
+keywords = {Wireless communications, Software-defined radio, Universal software radio peripheral},
+abstract = {In this chapter, we extend the emulator ComNetsEmu used throughout the book by implementing foundational wireless communication applications using Software-Defined Radio (SDR) devices, particularly Universal Software Radio Peripherals (USRPs). After an introduction of SDR and some common implmentations, we provide practical hands-on examples. Through a bridge network located between two Docker containers and the emulator, two basic applications are flashed into the SDR hardware to transfer data using OFDM modulation. This deployment allows us to demonstrate how softwarization leverages the integration of emerging and current technologies applied to communication networks.}
 }
 ```
 
