@@ -9,12 +9,32 @@ In this repository, you will find the source code for analyzing tracks during da
 ## Overview
 
 In this repository, you will find the source code and data blocks for implementing different types of digital transmission in GNURadio.
-For this test, the Ettus Research N310 SDR was under use and the data analysis was performed using Python.
+For this test, the Ettus Research N310 SDR was under use and the data analysis was performed using Python, C and C++.
 
 Table of Contents
 ## Quick Start
 
+### Driver and Software Installation
 The installation of GNURadio is taken directly for the official Ettus Research website under the following link
 https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
 In our case, we have done the installation in an Ubuntu 18.04 system.
 
+# 
+
+
+
+
+## Contributing
+
+This project exists thanks to all people who contribute.
+The [list](./CONTRIBUTORS) of all contributors.
+
+
+## Contact
+
+* **Javier Acevedo** - *Contributor and Project Maintainer* javier.acevedo@tu-dresden.de
+
+
+## License
+
+This project is licensed under the [MIT license](./LICENSE).
