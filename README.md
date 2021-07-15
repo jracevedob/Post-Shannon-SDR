@@ -2,7 +2,7 @@
 
 [![MIT Licensed](https://img.shields.io/github/license/jracevedob/Post-Shannon-SDR)](https://github.com/jracevedob/Post-Shannon-SDR/blob/main/LICENSE)
 [![Build Status](https://github.com//jracevedob/Post-Shannon-SDR/actions/workflows/build.yml/badge.svg)](https://github.com//jracevedob/Post-Shannon-SDR/actions)
-[![Documentation Status](https://readthedocs.org/projects/graphriccicurvature/badge/?version=latest)](https://graphriccicurvature.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/graphriccicurvature/badge/?version=latest)]()
 [![Downloads](https://pepy.tech/badge/Post-Shannon-SDR)](https://pepy.tech/project/Post-Shannon-SDR)
 
 
@@ -57,3 +57,7 @@ The [list](./CONTRIBUTORS) of all contributors.
 ## License
 
 This project is licensed under the [MIT license](./LICENSE).
+
+## News
+
+* **Hardware acceleration** - *Through RFSoC, we accelerate the execution of the GNU Radio modules*
