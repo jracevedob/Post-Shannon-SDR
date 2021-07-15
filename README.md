@@ -1,12 +1,8 @@
+[![MIT Licensed](https://img.shields.io/github/license/jracevedob/Post-Shannon-SDR)](https://github.com/jracevedob/Post-Shannon-SDR/blob/main/LICENSE)
+
 # Post-Shannon-SDR
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jracevedob/Post-Shannon-SDR>
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/saibalmars/GraphRicciCurvature/master?filepath=notebooks%2Ftuto>
-[![PyPI version](https://badge.fury.io/py/GraphRicciCurvature.svg)](https://badge.fury.io/py/GraphRicciCurvature)
-[![Build Status](https://github.com/saibalmars/GraphRicciCurvature/actions/workflows/build.yml/badge.svg)](https://github.com/saibalmars/Gr>
-[![Documentation Status](https://readthedocs.org/projects/graphriccicurvature/badge/?version=latest)](https://graphriccicurvature.readthedo>
-[![Downloads](https://pepy.tech/badge/graphriccicurvature)](https://pepy.tech/project/graphriccicurvature)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 
 In this repository, you will find the source code for analyzing tracks during data transmission using Software Defined Radios. Metrics about error positioning and error syndrom are attached.
 
