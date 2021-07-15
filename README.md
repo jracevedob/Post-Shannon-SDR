@@ -1,6 +1,6 @@
 # Post-Shannon-SDR
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/saibalmars/GraphRicci>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jracevedob/Post-Shannon-SDR>
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/saibalmars/GraphRicciCurvature/master?filepath=notebooks%2Ftuto>
 [![PyPI version](https://badge.fury.io/py/GraphRicciCurvature.svg)](https://badge.fury.io/py/GraphRicciCurvature)
 [![Build Status](https://github.com/saibalmars/GraphRicciCurvature/actions/workflows/build.yml/badge.svg)](https://github.com/saibalmars/Gr>
