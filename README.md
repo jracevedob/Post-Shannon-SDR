@@ -1,3 +1,7 @@
+<p align="center">
+<img alt="PostSahnnon SDR" src="https://github.com/jracevedob/Post-Shannon-SDR/Logo/LogoSDR.eps" width="500">
+</p>
+
 # Post-Shannon-SDR
 
 [![MIT Licensed](https://img.shields.io/github/license/jracevedob/Post-Shannon-SDR)](https://github.com/jracevedob/Post-Shannon-SDR/blob/main/LICENSE)
@@ -13,7 +17,7 @@ In this repository, you will find the source code for analyzing tracks during da
 In this repository, you will find the source code and data blocks for implementing different types of digital transmission in GNURadio.
 For this test, the Ettus Research N310 SDR was under use and the data analysis was performed using Python, C and C++.
 
-Table of Contents
+# Table of Contents
 ## Quick Start
 
 ### Driver and Software Installation
