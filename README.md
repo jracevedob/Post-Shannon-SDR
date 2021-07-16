@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="PostSahnnon_SDR" src="https://github.com/jracevedob/Post-Shannon-SDR/tree/main/Logo" width="500">
+<img alt="PostSahnnon_SDR" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/main/Logo/LogoSDR.png" width="500">
 </p>
 
 # Post-Shannon-SDR
