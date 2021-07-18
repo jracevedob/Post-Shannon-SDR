@@ -6,8 +6,9 @@
 
 [![MIT Licensed](https://img.shields.io/github/license/jracevedob/Post-Shannon-SDR)](https://github.com/jracevedob/Post-Shannon-SDR/blob/main/LICENSE)
 [![Build Status](https://github.com//jracevedob/Post-Shannon-SDR/actions/workflows/build.yml/badge.svg)](https://github.com//jracevedob/Post-Shannon-SDR/actions)
-[![Documentation Status](https://readthedocs.org/projects/graphriccicurvature/badge/?version=latest)]()
-[![Downloads](https://pepy.tech/badge/Post-Shannon-SDR)](https://pepy.tech/project/Post-Shannon-SDR)
+[![Documentation Status](https://readthedocs.org/projects/graphriccicurvature/badge/?version=latest)](https://github.com/jracevedob/Post-Shannon-SDR/wiki)
+[![Downloads](https://img.shields.io/github/downloads/jracevedob/Post-Shannon-SDR/total?style=flat-square]
+
 
 
 In this repository, you will find the source code for analyzing tracks during data transmission using Software Defined Radios. Metrics about error positioning and error syndrom are attached. This project is carried out as part of the  Post Shannon research at the Deutsche Telekom Chair of Communication Networks.
