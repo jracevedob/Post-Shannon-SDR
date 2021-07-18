@@ -27,6 +27,10 @@ https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD
 In our case, we have done the installation in an Ubuntu 18.04 system. For a more detailed and step-by-step description of the setup,
 please refer to the [list](./Installation) repository.
 
+### Examples
+
+### Implementation
+
 
 ## Citations
 We are going to be really content and encouraged if you can cite our scientific works in your own publications 
