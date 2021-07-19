@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="USRP N310" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/main/Installation/N310isoExplode.png" width="500">
+<img alt="USRP N310" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/main/Installation/N310isoExplode.png" width="800">
 </p>
 
 For the utilization of the USRP N310 together with GNURadio, it is necessary to install the following software libraries and hardware drivers:
