@@ -78,7 +78,30 @@ sudo apt-get update
 sudo apt-get install libuhd-dev libuhd3.15.0 uhd-host
 ```
 
-Finally, you can also install the UHD driver directly from the source code provided by Ettus Research in the following GitHub repository:
+Finally, you can also install the UHD driver directly from the source code provided by Ettus Research in the following GitHub [repository](git clone https://github.com/EttusResearch/uhd). The instructions for the installation of the version v3.15.0 of the driver are the following:
+
+```
+git clone https://github.com/EttusResearch/uhd
+cd uhd
+git checkout v3.15.0.0
+cd host
+mkdir build
+cd build
+cmake ../
+make
+make test
+sudo make install
+sudo ldconfig
+export LD_LIBRARY_PATH=/usr/local/lib
+```
+
+If the installation was successful, then by typing the command *uhd_find_devices* in the terminal, you should get the following message:
+
+```
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_3.15.0.0-release
+No UHD Devices Found
+```
+
 
 
 * **RF Network-on-Chip** - 
