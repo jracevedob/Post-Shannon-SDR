@@ -6,7 +6,7 @@
 
 [![MIT Licensed](https://img.shields.io/github/license/jracevedob/Post-Shannon-SDR)](https://github.com/jracevedob/Post-Shannon-SDR/blob/main/LICENSE)
 [![Build Status](https://github.com//jracevedob/Post-Shannon-SDR/actions/workflows/build.yml/badge.svg)](https://github.com//jracevedob/Post-Shannon-SDR/actions)
-[![Documentation Status](https://readthedocs.org/projects/graphriccicurvature/badge/?version=latest)](https://github.com/jracevedob/Post-Shannon-SDR/wiki)
+[![Documentation Status](https://readthedocs.org/projects/post-shannon-sdr/builds/14416688/)](https://github.com/jracevedob/Post-Shannon-SDR/wiki)
 [![Github All Releases](https://img.shields.io/github/downloads/jracevedob/Post-Shannon-SDR/total.svg)]()
 
 
@@ -22,8 +22,8 @@ For this test, the Ettus Research N310 SDR was under use and the data analysis w
 ## Quick Start
 
 ### Driver and Software Installation
-The installation of GNURadio is taken directly for the official Ettus Research website under the following link
-https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
+The installation of GNURadio is taken directly for the official Ettus Research website under the following [Link](
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux)
 In our case, we have done the installation in an Ubuntu 18.04 system. For a more detailed and step-by-step description of the setup,
 please refer to the [Installation](./Installation) repository.
 
