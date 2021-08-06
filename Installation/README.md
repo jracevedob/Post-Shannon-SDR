@@ -2,17 +2,17 @@
 <img alt="USRP N310" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/main/Installation/N310isoExplode.png" width="800">
 </p>
 
-The software stack of the 
+The software stack for programming Ettus Research Devices in conjunction with GNU Radio is mainly composed by applications based on Python wrappers of C++ functions. Those applications run on top of operating systems that establish communication with the hardware through drivers.
 
 For the utilization of the USRP N310 together with GNURadio, it is necessary to install the following software libraries and hardware drivers:
 
-* **UHD Installation** - Please refer to the following [Link](https://files.ettus.com/manual/page_install.html) for more details about the installation of the Universal Hardware Driver (UHD) from Ettus Research's SDR devices. The installation of the UHD can be done through the package manager by just typing the following command line in the terminal:
+* **UHD Installation** - Please refer to the following [Link](https://files.ettus.com/manual/page_install.html) for more details about the installation of the Universal Hardware Driver (UHD) of Ettus Research's SDR devices. The installation of the UHD can be done through the package manager by just typing the following command line in the terminal:
 
 ```
 sudo apt-get install libuhd-dev libuhd003 uhd-host
 ```
 
-Additionally, the installation can take place by using binaries files through official Ettus Research repositories:
+Additionally, the installation can take place by using binaries files through official Ettus Research's repositories:
 
 ```
 sudo add-apt-repository ppa:ettusresearch/uhd

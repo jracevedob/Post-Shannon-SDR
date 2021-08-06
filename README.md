@@ -6,7 +6,7 @@
 
 [![MIT Licensed](https://img.shields.io/github/license/jracevedob/Post-Shannon-SDR)](https://github.com/jracevedob/Post-Shannon-SDR/blob/main/LICENSE)
 [![Build Status](https://github.com//jracevedob/Post-Shannon-SDR/actions/workflows/build.yml/badge.svg)](https://github.com//jracevedob/Post-Shannon-SDR/actions)
-[![Documentation Status](https://readthedocs.org/projects/post-shannon-sdr/builds/14416688/)](https://github.com/jracevedob/Post-Shannon-SDR/wiki)
+[![Documentation Status](https://readthedocs.org/projects/post-shannon-sdr/badge/?version=latest)](https://post-shannon-sdr.readthedocs.io/en/latest/?badge=latest)
 [![Github All Releases](https://img.shields.io/github/downloads/jracevedob/Post-Shannon-SDR/total.svg)]()
 
 
