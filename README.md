@@ -59,6 +59,12 @@ abstract = {In this chapter, we extend the emulator ComNetsEmu used throughout t
 This project exists thanks to all people who contribute.
 The [list](./CONTRIBUTORS) of all contributors.
 
+## References
+
+### Internet sources
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
+
+### Academic and industry sources
 
 ## Contact
 
