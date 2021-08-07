@@ -2,7 +2,7 @@
 <img alt="USRP N310" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/main/Installation/N310isoExplode.png" width="800">
 </p>
 
-The software stack for programming Ettus Research Devices in conjunction with GNU Radio is mainly composed by applications based on Python wrappers of C++ functions. Those applications run on top of operating systems that establish communication with the hardware through drivers.
+The software stack for programming Ettus Research Devices in conjunction with GNU Radio is mainly composed by applications based on Python wrappers of C++ signal processing functions. Those applications run on top of operating systems that establish communication with the hardware through drivers.
 
 For the utilization of the USRP N310 together with GNURadio in GNU-Linux Ubuntu 20.04, it is necessary to install the following dependencies and packages:
 
@@ -102,6 +102,7 @@ If the installation was successful, then by typing the command *uhd_find_devices
 No UHD Devices Found
 ```
 
+* **Hardware Setup** - After a successful installation of all the dependencies and packages within your operating system, it is then necessary the setup of the IP addresses of the USRP N310. 
 
 
 * **RF Network-on-Chip** - 
