@@ -102,7 +102,51 @@ If the installation was successful, then by typing the command *uhd_find_devices
 No UHD Devices Found
 ```
 
-* **Hardware Setup** - After a successful installation of all the dependencies and packages within your operating system, it is then necessary the setup of the IP addresses of the USRP N310. 
+* **Hardware Setup for Ethernet communication** - After a successful installation of all the dependencies and packages within your operating system, it is then necessary the setup of the IP addresses of the host computer in order to interact with the USRP N310. 
+
+Set the IP address of your internet adapter as shown below for the interface enp0s31f6. If the Ethernet adapter on your machine is for instance eth0, then replace enp0s31f6 for eth0.
+
+```
+sudo ifconfig enp0s31f6 192.168.10.1 netmask 255.255.255.0
+```
+
+By typing the following command, you can check that your Ethernet adapter is configured with the desired IP address:
+
+```
+ip a
+```
+Then, you have to connect the RJ45 - SFP+ adapater into the SFP+ Port of the USRP N310. By using the Ethernet cable included in the box of the USRP, you can connect the host computer and the USRP device.
+
+Then, by typing the command **uhd_find_devices** in the terminal, it is exptected to see the connected devices to your host machine:
+
+``` 
+$ uhd_find_devices 
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_3.15.0.0-release
+--------------------------------------------------
+-- UHD Device 0
+--------------------------------------------------
+Device Address:
+    serial: 3198418
+    addr: 192.168.10.2
+    claimed: False
+    mgmt_addr: 192.168.10.2
+    product: n310
+    type: n3xx
 
 
-* **RF Network-on-Chip** - 
+--------------------------------------------------
+-- UHD Device 1
+--------------------------------------------------
+Device Address:
+    serial: 3198444
+    addr: 192.168.10.200
+    claimed: False
+    mgmt_addr: 192.168.10.200
+    product: n310
+    type: n3xx
+
+
+```
+
+
+* **RF Network-on-Chip** - Acceleration of the hardware modules 
