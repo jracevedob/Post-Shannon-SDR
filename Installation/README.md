@@ -95,9 +95,10 @@ sudo ldconfig
 export LD_LIBRARY_PATH=/usr/local/lib
 ```
 
-If the installation was successful, then by typing the command *uhd_find_devices* in the terminal, you should get the following message:
+If the installation was successful, then by typing the command **uhd_find_devices** in the terminal, you should get the following message:
 
 ```
+$ uhd_find_devices
 [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_3.15.0.0-release
 No UHD Devices Found
 ```
