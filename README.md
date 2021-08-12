@@ -70,6 +70,9 @@ https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD
 
 * **Javier Acevedo** - *Contributor and Project Maintainer* javier.acevedo@tu-dresden.de
 
+## Acknowledgements
+
+We are really grateful to the [6G Life](https://6g-life.de/) project of the TU Dresden and Prof. Frank H. P. Fitzek for their support in the realization of this initiative.
 
 ## License
 
@@ -77,5 +80,6 @@ This project is licensed under the [MIT license](./LICENSE).
 
 ## News
 
-* **Hardware acceleration** - *Through RFSoC, we accelerate the execution of the GNU Radio modules*
+* **12.08.2021** - *Release of first set of modulation examples and build of functional C++ blocks*
+* **14.08.2021** - *Hardware acceleration deployment for the C++ integrated blocks*
 
