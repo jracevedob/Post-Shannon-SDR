@@ -24,8 +24,7 @@ Additionally, the installation can take place by building the source code in you
 ```
 git clone --recursive https://github.com/gnuradio/gnuradio
 cd gnuradio
-git checkout v3.9
-git checkout maint-3.7
+git checkout maint-3.8
 git submodule update --init --recursive
 mkdir build
 cd build
@@ -84,6 +83,7 @@ Finally, you can also install the UHD driver directly from the source code provi
 git clone https://github.com/EttusResearch/uhd
 cd uhd
 git checkout v3.15.0.0
+git submodule update --init --recursive
 cd host
 mkdir build
 cd build

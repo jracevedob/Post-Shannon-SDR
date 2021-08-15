@@ -10,7 +10,6 @@
 [![Github All Releases](https://img.shields.io/github/downloads/jracevedob/Post-Shannon-SDR/total.svg)]()
 
 
-
 In this repository, you will find the source code for analyzing tracks during data transmission using Software Defined Radios. Metrics about error positioning and error syndrom are attached. This project is carried out as part of the  Post Shannon research at the Deutsche Telekom Chair of Communication Networks.
 
 ## Overview
@@ -19,18 +18,27 @@ In this repository, you will find the source code and data blocks for implementi
 For this test, the Ettus Research N310 SDR was under use and the data analysis was performed using Python, C and C++. For more information about the developing hardware, please refer to the vendor [Website](https://kb.ettus.com/N300/N310)
 
 # Table of Contents
+
 ## Quick Start
 
 ### Driver and Software Installation
 The installation of GNURadio is taken directly for the official Ettus Research website under the following [Link](
 https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux)
-In our case, we have done the installation in an Ubuntu 18.04 system. For a more detailed and step-by-step description of the setup,
+In our case, we have done the installation in an Ubuntu 20.04 system. For a more detailed and step-by-step description of the setup,
 please refer to the [Installation](./Installation) repository.
 
 ### Examples
 
 Some examples about the simulation of different modulation schemes is provided
+
 ### Implementation
+
+You can find the implementation of the 
+
+### Hardware acceleration 
+
+
+### Vagrant
 
 
 ## Citations
