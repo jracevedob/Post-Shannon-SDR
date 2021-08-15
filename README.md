@@ -89,5 +89,6 @@ This project is licensed under the [MIT license](./LICENSE).
 ## News
 
 * **12.08.2021** - *Release of first set of modulation examples and build of functional C++ blocks*
+* **11.08.2021** - *Spektrum Analyzer updated*
 * **14.08.2021** - *Hardware acceleration deployment for the C++ integrated blocks*
 
