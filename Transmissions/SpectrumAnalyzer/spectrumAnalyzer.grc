@@ -172,26 +172,6 @@ blocks:
     coordinate: [536, 276.0]
     rotation: 0
     state: true
-- name: freq_xlating_fir_filter_xxx_0
-  id: freq_xlating_fir_filter_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    center_freq: center_freq_trans
-    comment: ''
-    decim: decimation
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    samp_rate: samp_rate
-    taps: firdes.low_pass(1,samp_rate,samp_rate/(2*decimation), transition_bw)
-    type: ccc
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [536, 508.0]
-    rotation: 0
-    state: disabled
 - name: qtgui_freq_sink_x_0
   id: qtgui_freq_sink_x
   parameters:
@@ -270,7 +250,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 516.0]
+    coordinate: [872, 500.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_1
@@ -1170,8 +1150,6 @@ connections:
 - [analog_sig_source_x_1, '0', qtgui_freq_sink_x_1, '0']
 - [analog_sig_source_x_1, '0', qtgui_time_sink_x_0, '0']
 - [blocks_throttle_0, '0', uhd_usrp_sink_0, '0']
-- [freq_xlating_fir_filter_xxx_0, '0', qtgui_freq_sink_x_0, '0']
-- [uhd_usrp_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']
 - [uhd_usrp_source_0, '0', qtgui_freq_sink_x_0, '0']
 
 metadata:
