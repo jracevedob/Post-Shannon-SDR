@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="ANalyzer" src="https://github.com/jracevedob/Post-Shannon-SDR/tree/dev/HW_Spec/SpektrumANalyzer.png" width="800">
+<img alt="ANalyzer" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/main/Transmissions/SpectrumAnalyzer/SpektrumANalyzer.jpg" width="800">
 </p>
 
 In this example, it is presented a spectrum analyzer in which you can select a frequency to be sensed. Additionally, a 
