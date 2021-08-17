@@ -7,15 +7,15 @@ The operation of the device depends in great extend on the adequate configuratio
 ### Supported Sample Rates
 The USRP N300/N310 supports the three fixed Master Clock Rates listed below.
 
-**122.88 MHz**
-**125.00 MHz**
-**153.60 MHz**
+* **122.88 MHz**
+* **125.00 MHz**
+* **153.60 MHz**
 
 ### Tunning range
 The transmission frequency, also known as tunning, can be adjusted from 10MHz to 6GHz.
 Additionally, the user can configure the following parameters:
-**4 RX DDC chains in FPGA**
-**4 TX DUC chain in FPGA**
+* **4 RX DDC chains in FPGA**
+* **4 TX DUC chain in FPGA**
 
 For more information, please refer to the vendor's documentation in the following [Link](https://files.ettus.com/manual/page_usrp_n3xx.html) and in the following [Link](https://kb.ettus.com/N300/N310).
 
