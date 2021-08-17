@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="USRP N310" src="https://github.com/jracevedob/Post-Shannon-SDR/tree/dev/HW_Spec/N310isoExplode.png" width="800">
+<img alt="USRP N310" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/dev/HW_Spec/N310isoExplode.png" width="800">
 </p>
 
 The operation of the device depends in great extend on the adequate configuration of the USRP through the UHD utilities. In the case of the N310, the following are the specifications that must be taken under consideration for the deployment of applications in GNURadio
