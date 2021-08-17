@@ -53,6 +53,18 @@ blocks:
     coordinate: [584, 12.0]
     rotation: 0
     state: true
+- name: decimation
+  id: variable
+  parameters:
+    comment: ''
+    value: '10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 12.0]
+    rotation: 0
+    state: enabled
 - name: gain
   id: variable_qtgui_range
   parameters:
@@ -71,14 +83,14 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [752, 12.0]
+    coordinate: [720, 12.0]
     rotation: 0
     state: enabled
 - name: samp_rate
   id: variable
   parameters:
     comment: ''
-    value: 3.8e6
+    value: 3.5e6
   states:
     bus_sink: false
     bus_source: false
@@ -86,18 +98,18 @@ blocks:
     coordinate: [184, 12]
     rotation: 0
     state: enabled
-- name: sample_rate_usrp
+- name: transition_bw
   id: variable
   parameters:
     comment: ''
-    value: '0'
+    value: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 12.0]
+    coordinate: [392, 12.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: variable_qtgui_range_2
   id: variable_qtgui_range
   parameters:
@@ -116,7 +128,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [920, 12.0]
+    coordinate: [848, 12.0]
     rotation: 0
     state: disabled
 - name: analog_sig_source_x_1
@@ -160,6 +172,26 @@ blocks:
     coordinate: [536, 276.0]
     rotation: 0
     state: true
+- name: freq_xlating_fir_filter_xxx_0
+  id: freq_xlating_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    center_freq: center_freq_trans
+    comment: ''
+    decim: decimation
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    taps: firdes.low_pass(1,samp_rate,samp_rate/(2*decimation), transition_bw)
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 540.0]
+    rotation: 0
+    state: true
 - name: qtgui_freq_sink_x_0
   id: qtgui_freq_sink_x
   parameters:
@@ -178,7 +210,7 @@ blocks:
     autoscale: 'False'
     average: '1.0'
     axislabels: 'True'
-    bw: samp_rate
+    bw: samp_rate/decimation
     color1: '"blue"'
     color10: '"dark blue"'
     color2: '"red"'
@@ -192,7 +224,7 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: center_freq_trans
-    fftsize: '1024'
+    fftsize: '2048'
     freqhalf: 'True'
     grid: 'False'
     gui_hint: ''
@@ -238,7 +270,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [928, 540.0]
+    coordinate: [984, 548.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_1
@@ -319,7 +351,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [528, 340.0]
+    coordinate: [552, 340.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -416,7 +448,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 172.0]
+    coordinate: [488, 180.0]
     rotation: 0
     state: true
 - name: uhd_usrp_sink_0
@@ -1129,7 +1161,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 508.0]
+    coordinate: [240, 500.0]
     rotation: 0
     state: true
 
@@ -1138,7 +1170,8 @@ connections:
 - [analog_sig_source_x_1, '0', qtgui_freq_sink_x_1, '0']
 - [analog_sig_source_x_1, '0', qtgui_time_sink_x_0, '0']
 - [blocks_throttle_0, '0', uhd_usrp_sink_0, '0']
-- [uhd_usrp_source_0, '0', qtgui_freq_sink_x_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', qtgui_freq_sink_x_0, '0']
+- [uhd_usrp_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']
 
 metadata:
   file_format: 1
