@@ -1,5 +1,5 @@
 <p align="center">
-<img alt="Flow" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/dev/Installation/Uhd_GNURADIO.png" width="400">
+<img alt="Flow" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/dev/Installation/Uhd_GNURADIO.png" width="800">
 </p>
 
 The software stack for programming Ettus Research Devices in conjunction with GNU Radio is mainly composed by applications based on Python wrappers of C++ signal processing functions. Those applications run on top of operating systems that establish communication with the hardware through drivers.
