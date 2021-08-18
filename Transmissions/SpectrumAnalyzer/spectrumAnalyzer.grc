@@ -111,7 +111,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 1e6
+    value: 3.4e6
   states:
     bus_sink: false
     bus_source: false
@@ -204,7 +204,7 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: center_freq_trans
-    fftsize: '2048'
+    fftsize: '1024'
     freqhalf: 'True'
     grid: 'False'
     gui_hint: ''
@@ -250,7 +250,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [872, 500.0]
+    coordinate: [800, 492.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_1
@@ -349,7 +349,7 @@ blocks:
     alpha7: '1.0'
     alpha8: '1.0'
     alpha9: '1.0'
-    autoscale: 'False'
+    autoscale: 'True'
     axislabels: 'True'
     color1: blue
     color10: dark blue
@@ -389,7 +389,7 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: '1024'
+    size: '2048'
     srate: samp_rate
     stemplot: 'False'
     style1: '1'
@@ -405,7 +405,7 @@ blocks:
     tr_chan: '0'
     tr_delay: '0'
     tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_mode: qtgui.TRIG_MODE_AUTO
     tr_slope: qtgui.TRIG_SLOPE_POS
     tr_tag: '""'
     type: complex
@@ -1141,7 +1141,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [232, 468.0]
+    coordinate: [224, 460.0]
     rotation: 0
     state: true
 

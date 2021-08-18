@@ -28,6 +28,7 @@ from gnuradio.filter import firdes
 import sip
 from gnuradio import analog
 from gnuradio import blocks
+from gnuradio import filter
 from gnuradio import gr
 from gnuradio.fft import window
 import sys
@@ -81,7 +82,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.transition_bw = transition_bw = 1
-        self.samp_rate = samp_rate = 1e6
+        self.samp_rate = samp_rate = 3.4e6
         self.gain = gain = 50
         self.decimation = decimation = 10
         self.center_freq_trans = center_freq_trans = 2e9
@@ -128,7 +129,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.uhd_usrp_sink_0.set_antenna("TX/RX", 0)
         self.uhd_usrp_sink_0.set_gain(gain/2, 0)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_c(
-            1024, #size
+            2048, #size
             samp_rate, #samp_rate
             "", #name
             1, #number of inputs
@@ -140,8 +141,8 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
 
         self.qtgui_time_sink_x_0.enable_tags(True)
-        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
-        self.qtgui_time_sink_x_0.enable_autoscale(False)
+        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_AUTO, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_0.enable_autoscale(True)
         self.qtgui_time_sink_x_0.enable_grid(False)
         self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
@@ -221,7 +222,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self._qtgui_freq_sink_x_1_win = sip.wrapinstance(self.qtgui_freq_sink_x_1.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_1_win)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
-            2048, #size
+            1024, #size
             window.WIN_BLACKMAN_hARRIS, #wintype
             center_freq_trans, #fc
             samp_rate/decimation, #bw
@@ -263,6 +264,16 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
+        self.band_pass_filter_0 = filter.fir_filter_ccf(
+            decimation,
+            firdes.band_pass(
+                1,
+                samp_rate,
+                samp_rate/3-40,
+                samp_rate/3+400,
+                100,
+                window.WIN_HAMMING,
+                6.76))
         self.analog_sig_source_x_1 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, center_freq_trans, gain, 0, 0)
 
 
@@ -273,8 +284,9 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_throttle_0, 0))
         self.connect((self.analog_sig_source_x_1, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.analog_sig_source_x_1, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.band_pass_filter_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.qtgui_freq_sink_x_0, 0))
+        self.connect((self.uhd_usrp_source_0, 0), (self.band_pass_filter_0, 0))
 
 
     def closeEvent(self, event):
@@ -303,6 +315,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
+        self.band_pass_filter_0.set_taps(firdes.band_pass(1, self.samp_rate, self.samp_rate/3-40, self.samp_rate/3+400, 100, window.WIN_HAMMING, 6.76))
 
     def get_gain(self):
         return self.gain
