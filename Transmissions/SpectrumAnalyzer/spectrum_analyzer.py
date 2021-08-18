@@ -82,7 +82,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.transition_bw = transition_bw = 1
-        self.samp_rate = samp_rate = 3.4e6
+        self.samp_rate = samp_rate = 2e6
         self.gain = gain = 50
         self.decimation = decimation = 10
         self.center_freq_trans = center_freq_trans = 2e9
@@ -99,7 +99,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self._center_freq_trans_range = Range(1.5e9, 3.5e9, 1e8, 2e9, 200)
         self._center_freq_trans_win = RangeWidget(self._center_freq_trans_range, self.set_center_freq_trans, 'center_freq_trans', "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._center_freq_trans_win)
-        self.uhd_usrp_source_0 = uhd.usrp_source(
+        self.uhd_usrp_source_0_0 = uhd.usrp_source(
             ",".join(('addr=192.168.10.2', '')),
             uhd.stream_args(
                 cpu_format="fc32",
@@ -107,12 +107,12 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
                 channels=list(range(0,1)),
             ),
         )
-        self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_time_unknown_pps(uhd.time_spec(0))
+        self.uhd_usrp_source_0_0.set_samp_rate(samp_rate)
+        self.uhd_usrp_source_0_0.set_time_unknown_pps(uhd.time_spec(0))
 
-        self.uhd_usrp_source_0.set_center_freq(center_freq_trans, 0)
-        self.uhd_usrp_source_0.set_antenna("RX2", 0)
-        self.uhd_usrp_source_0.set_gain(0, 0)
+        self.uhd_usrp_source_0_0.set_center_freq(center_freq_trans, 0)
+        self.uhd_usrp_source_0_0.set_antenna("RX2", 0)
+        self.uhd_usrp_source_0_0.set_gain(0, 0)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
             ",".join(('addr=192.168.10.200', '')),
             uhd.stream_args(
@@ -221,25 +221,25 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_1_win = sip.wrapinstance(self.qtgui_freq_sink_x_1.pyqwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_1_win)
-        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
+        self.qtgui_freq_sink_x_0_0 = qtgui.freq_sink_c(
             1024, #size
             window.WIN_BLACKMAN_hARRIS, #wintype
             center_freq_trans, #fc
-            samp_rate/decimation, #bw
+            samp_rate, #bw
             "", #name
             1,
             None # parent
         )
-        self.qtgui_freq_sink_x_0.set_update_time(0.10)
-        self.qtgui_freq_sink_x_0.set_y_axis(-140, 10)
-        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
-        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
-        self.qtgui_freq_sink_x_0.enable_autoscale(False)
-        self.qtgui_freq_sink_x_0.enable_grid(False)
-        self.qtgui_freq_sink_x_0.set_fft_average(1.0)
-        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
-        self.qtgui_freq_sink_x_0.enable_control_panel(False)
-        self.qtgui_freq_sink_x_0.set_fft_window_normalized(False)
+        self.qtgui_freq_sink_x_0_0.set_update_time(0.10)
+        self.qtgui_freq_sink_x_0_0.set_y_axis(-140, 10)
+        self.qtgui_freq_sink_x_0_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0_0.enable_autoscale(False)
+        self.qtgui_freq_sink_x_0_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0_0.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0_0.set_fft_window_normalized(False)
 
 
 
@@ -254,26 +254,19 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
         for i in range(1):
             if len(labels[i]) == 0:
-                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_freq_sink_x_0_0.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
-            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
-            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
+                self.qtgui_freq_sink_x_0_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0_0.set_line_alpha(i, alphas[i])
 
-        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
+        self._qtgui_freq_sink_x_0_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0_0.pyqwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_0_win)
+        self.freq_xlating_fft_filter_ccc_0 = filter.freq_xlating_fft_filter_ccc(1, firdes.low_pass(1,samp_rate,samp_rate/(2*decimation), transition_bw), 0, samp_rate)
+        self.freq_xlating_fft_filter_ccc_0.set_nthreads(1)
+        self.freq_xlating_fft_filter_ccc_0.declare_sample_delay(0)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
-        self.band_pass_filter_0 = filter.fir_filter_ccf(
-            decimation,
-            firdes.band_pass(
-                1,
-                samp_rate,
-                samp_rate/3-40,
-                samp_rate/3+400,
-                100,
-                window.WIN_HAMMING,
-                6.76))
         self.analog_sig_source_x_1 = analog.sig_source_c(samp_rate, analog.GR_COS_WAVE, center_freq_trans, gain, 0, 0)
 
 
@@ -284,9 +277,9 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.connect((self.analog_sig_source_x_1, 0), (self.blocks_throttle_0, 0))
         self.connect((self.analog_sig_source_x_1, 0), (self.qtgui_freq_sink_x_1, 0))
         self.connect((self.analog_sig_source_x_1, 0), (self.qtgui_time_sink_x_0, 0))
-        self.connect((self.band_pass_filter_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.blocks_throttle_0, 0), (self.uhd_usrp_sink_0, 0))
-        self.connect((self.uhd_usrp_source_0, 0), (self.band_pass_filter_0, 0))
+        self.connect((self.freq_xlating_fft_filter_ccc_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
+        self.connect((self.uhd_usrp_source_0_0, 0), (self.freq_xlating_fft_filter_ccc_0, 0))
 
 
     def closeEvent(self, event):
@@ -302,6 +295,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
     def set_transition_bw(self, transition_bw):
         self.transition_bw = transition_bw
+        self.freq_xlating_fft_filter_ccc_0.set_taps(firdes.low_pass(1,self.samp_rate,self.samp_rate/(2*self.decimation), self.transition_bw))
 
     def get_samp_rate(self):
         return self.samp_rate
@@ -310,12 +304,12 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_1.set_sampling_freq(self.samp_rate)
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_trans, self.samp_rate/self.decimation)
+        self.qtgui_freq_sink_x_0_0.set_frequency_range(self.center_freq_trans, self.samp_rate)
         self.qtgui_freq_sink_x_1.set_frequency_range(self.center_freq_trans, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_source_0.set_samp_rate(self.samp_rate)
-        self.band_pass_filter_0.set_taps(firdes.band_pass(1, self.samp_rate, self.samp_rate/3-40, self.samp_rate/3+400, 100, window.WIN_HAMMING, 6.76))
+        self.uhd_usrp_source_0_0.set_samp_rate(self.samp_rate)
+        self.freq_xlating_fft_filter_ccc_0.set_taps(firdes.low_pass(1,self.samp_rate,self.samp_rate/(2*self.decimation), self.transition_bw))
 
     def get_gain(self):
         return self.gain
@@ -330,7 +324,7 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
 
     def set_decimation(self, decimation):
         self.decimation = decimation
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_trans, self.samp_rate/self.decimation)
+        self.freq_xlating_fft_filter_ccc_0.set_taps(firdes.low_pass(1,self.samp_rate,self.samp_rate/(2*self.decimation), self.transition_bw))
 
     def get_center_freq_trans(self):
         return self.center_freq_trans
@@ -338,10 +332,10 @@ class spectrum_analyzer(gr.top_block, Qt.QWidget):
     def set_center_freq_trans(self, center_freq_trans):
         self.center_freq_trans = center_freq_trans
         self.analog_sig_source_x_1.set_frequency(self.center_freq_trans)
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.center_freq_trans, self.samp_rate/self.decimation)
+        self.qtgui_freq_sink_x_0_0.set_frequency_range(self.center_freq_trans, self.samp_rate)
         self.qtgui_freq_sink_x_1.set_frequency_range(self.center_freq_trans, self.samp_rate)
         self.uhd_usrp_sink_0.set_center_freq(self.center_freq_trans, 0)
-        self.uhd_usrp_source_0.set_center_freq(self.center_freq_trans, 0)
+        self.uhd_usrp_source_0_0.set_center_freq(self.center_freq_trans, 0)
 
 
 
