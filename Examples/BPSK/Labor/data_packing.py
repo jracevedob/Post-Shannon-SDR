@@ -79,26 +79,19 @@ class data_packing(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.blocks_packed_to_unpacked_xx_0_0 = blocks.packed_to_unpacked_bb(4, gr.GR_MSB_FIRST)
-        self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(8, gr.GR_MSB_FIRST)
-        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_char*1, '/home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/testFiles/test_file', False, 0, 0)
-        self.blocks_file_source_0_0.set_begin_tag(pmt.PMT_NIL)
+        self.blocks_unpacked_to_packed_xx_0 = blocks.unpacked_to_packed_bb(8, gr.GR_MSB_FIRST)
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/testFiles/test_file', False, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'packet', False)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'packet2', False)
         self.blocks_file_sink_1.set_unbuffered(False)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, 'packet1', False)
-        self.blocks_file_sink_0.set_unbuffered(False)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_packed_to_unpacked_xx_0, 0))
-        self.connect((self.blocks_file_source_0_0, 0), (self.blocks_packed_to_unpacked_xx_0_0, 0))
-        self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.blocks_file_sink_1, 0))
-        self.connect((self.blocks_packed_to_unpacked_xx_0_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.blocks_unpacked_to_packed_xx_0, 0))
+        self.connect((self.blocks_unpacked_to_packed_xx_0, 0), (self.blocks_file_sink_1, 0))
 
 
     def closeEvent(self, event):

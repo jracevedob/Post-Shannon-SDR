@@ -51,7 +51,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: packet1
+    file: packetsingle
     type: byte
     unbuffered: 'False'
     vlen: '1'
@@ -61,7 +61,7 @@ blocks:
     bus_structure: null
     coordinate: [624, 396.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: blocks_file_sink_1
   id: blocks_file_sink
   parameters:
@@ -69,7 +69,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: packet
+    file: packet2
     type: byte
     unbuffered: 'False'
     vlen: '1'
@@ -79,7 +79,25 @@ blocks:
     bus_structure: null
     coordinate: [624, 252.0]
     rotation: 0
-    state: true
+    state: enabled
+- name: blocks_file_sink_1_0
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: packetsingleout
+    type: byte
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [912, 620.0]
+    rotation: 0
+    state: disabled
 - name: blocks_file_source_0
   id: blocks_file_source
   parameters:
@@ -101,7 +119,7 @@ blocks:
     bus_structure: null
     coordinate: [128, 236.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_file_source_0_0
   id: blocks_file_source
   parameters:
@@ -123,7 +141,29 @@ blocks:
     bus_structure: null
     coordinate: [128, 380.0]
     rotation: 0
-    state: true
+    state: disabled
+- name: blocks_file_source_0_1
+  id: blocks_file_source
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: /home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/Labor/packetsingle
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    repeat: 'False'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [152, 596.0]
+    rotation: 0
+    state: disabled
 - name: blocks_packed_to_unpacked_xx_0
   id: blocks_packed_to_unpacked_xx
   parameters:
@@ -142,13 +182,13 @@ blocks:
     bus_structure: null
     coordinate: [400, 260.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: blocks_packed_to_unpacked_xx_0_0
   id: blocks_packed_to_unpacked_xx
   parameters:
     affinity: ''
     alias: ''
-    bits_per_chunk: '4'
+    bits_per_chunk: '1'
     comment: ''
     endianness: gr.GR_MSB_FIRST
     maxoutbuf: '0'
@@ -161,13 +201,96 @@ blocks:
     bus_structure: null
     coordinate: [400, 404.0]
     rotation: 0
-    state: true
+    state: disabled
+- name: blocks_packed_to_unpacked_xx_0_1
+  id: blocks_packed_to_unpacked_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    bits_per_chunk: '8'
+    comment: ''
+    endianness: gr.GR_MSB_FIRST
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 620.0]
+    rotation: 0
+    state: disabled
+- name: blocks_unpacked_to_packed_xx_0
+  id: blocks_unpacked_to_packed_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    bits_per_chunk: '8'
+    comment: ''
+    endianness: gr.GR_MSB_FIRST
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [400, 140.0]
+    rotation: 0
+    state: enabled
+- name: blocks_unpacked_to_packed_xx_0_0
+  id: blocks_unpacked_to_packed_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    bits_per_chunk: '1'
+    comment: ''
+    endianness: gr.GR_MSB_FIRST
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 508.0]
+    rotation: 0
+    state: disabled
+- name: blocks_unpacked_to_packed_xx_0_0_0
+  id: blocks_unpacked_to_packed_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    bits_per_chunk: '1'
+    comment: ''
+    endianness: gr.GR_MSB_FIRST
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_ports: '1'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [416, 508.0]
+    rotation: 0
+    state: disabled
 
 connections:
 - [blocks_file_source_0, '0', blocks_packed_to_unpacked_xx_0, '0']
+- [blocks_file_source_0, '0', blocks_unpacked_to_packed_xx_0, '0']
 - [blocks_file_source_0_0, '0', blocks_packed_to_unpacked_xx_0_0, '0']
+- [blocks_file_source_0_1, '0', blocks_packed_to_unpacked_xx_0_1, '0']
+- [blocks_file_source_0_1, '0', blocks_unpacked_to_packed_xx_0_0_0, '0']
 - [blocks_packed_to_unpacked_xx_0, '0', blocks_file_sink_1, '0']
 - [blocks_packed_to_unpacked_xx_0_0, '0', blocks_file_sink_0, '0']
+- [blocks_packed_to_unpacked_xx_0_1, '0', blocks_file_sink_1_0, '0']
+- [blocks_unpacked_to_packed_xx_0, '0', blocks_file_sink_1, '0']
+- [blocks_unpacked_to_packed_xx_0_0, '0', blocks_file_sink_1_0, '0']
+- [blocks_unpacked_to_packed_xx_0_0_0, '0', blocks_unpacked_to_packed_xx_0_0, '0']
 
 metadata:
   file_format: 1
