@@ -36,7 +36,7 @@ Some examples about the simulation of different modulation schemes is provided
 You can find the implementation of the 
 
 ### Hardware acceleration 
-
+You can find how to accelerate GNU Radio blocks using the built-in Zynq
 
 ### Vagrant
 
