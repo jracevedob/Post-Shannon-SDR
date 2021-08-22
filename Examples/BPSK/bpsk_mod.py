@@ -8,7 +8,7 @@
 # Title: Bpsk Mod
 # Author: Javier Acevedo
 # Copyright: MIT
-# GNU Radio version: 3.9.2.0
+# GNU Radio version: 3.8.3.1
 
 from distutils.version import StrictVersion
 
@@ -30,23 +30,19 @@ from gnuradio import blocks
 import pmt
 from gnuradio import digital
 from gnuradio import gr
-from gnuradio.fft import window
 import sys
 import signal
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
 from gnuradio.qtgui import Range, RangeWidget
-from PyQt5 import QtCore
-
-
 
 from gnuradio import qtgui
 
 class bpsk_mod(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Bpsk Mod", catch_exceptions=True)
+        gr.top_block.__init__(self, "Bpsk Mod")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Bpsk Mod")
         qtgui.util.check_set_qss()
@@ -83,21 +79,28 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 4
         self.tunning = tunning = 50
         self.taps = taps = [1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]
-        self.samp_rate = samp_rate = 32e3
+        self.samp_rate = samp_rate = 50e3
         self.rrc_taps = rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 45*nfilts)
         self.phase_bw = phase_bw = 62.8e-3
         self.ntaps = ntaps = 15
         self.noise = noise = 50
         self.loop_order = loop_order = 2
-        self.gain = gain = 50
         self.excess_bw = excess_bw = 0.350
+        self.delay_tx = delay_tx = 25
         self.bpsk_const = bpsk_const = digital.constellation_bpsk().base()
 
         ##################################################
         # Blocks
         ##################################################
+        self._delay_tx_range = Range(5, 100, 1, 25, 200)
+        self._delay_tx_win = RangeWidget(self._delay_tx_range, self.set_delay_tx, 'delay_tx', "counter_slider", float)
+        self.top_grid_layout.addWidget(self._delay_tx_win, 0, 2, 1, 2)
+        for r in range(0, 1):
+            self.top_grid_layout.setRowStretch(r, 1)
+        for c in range(2, 4):
+            self.top_grid_layout.setColumnStretch(c, 1)
         self._tunning_range = Range(0, 100, 1, 50, 200)
-        self._tunning_win = RangeWidget(self._tunning_range, self.set_tunning, 'tunning', "counter_slider", float, QtCore.Qt.Horizontal)
+        self._tunning_win = RangeWidget(self._tunning_range, self.set_tunning, 'tunning', "counter_slider", float)
         self.top_grid_layout.addWidget(self._tunning_win, 0, 1, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
@@ -107,8 +110,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
             1024, #size
             samp_rate, #samp_rate
             'Received Signal', #name
-            1, #number of inputs
-            None # parent
+            1 #number of inputs
         )
         self.qtgui_time_sink_x_2_0.set_update_time(0.10)
         self.qtgui_time_sink_x_2_0.set_y_axis(-1, 1)
@@ -162,8 +164,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
             1024, #size
             samp_rate, #samp_rate
             'Transmitted Signal', #name
-            1, #number of inputs
-            None # parent
+            1 #number of inputs
         )
         self.qtgui_time_sink_x_2.set_update_time(0.10)
         self.qtgui_time_sink_x_2.set_y_axis(-1, 1)
@@ -217,8 +218,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
             1024, #size
             samp_rate, #samp_rate
             'Input output signal', #name
-            3, #number of inputs
-            None # parent
+            3 #number of inputs
         )
         self.qtgui_time_sink_x_0.set_update_time(0.10)
         self.qtgui_time_sink_x_0.set_y_axis(-1, 1)
@@ -268,8 +268,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.qtgui_const_sink_x_0_0 = qtgui.const_sink_c(
             1024, #size
             'Constalletion Receiver', #name
-            1, #number of inputs
-            None # parent
+            1 #number of inputs
         )
         self.qtgui_const_sink_x_0_0.set_update_time(0.10)
         self.qtgui_const_sink_x_0_0.set_y_axis(-2, 2)
@@ -313,8 +312,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.qtgui_const_sink_x_0 = qtgui.const_sink_c(
             1024, #size
             'Constallation Transmitter', #name
-            1, #number of inputs
-            None # parent
+            1 #number of inputs
         )
         self.qtgui_const_sink_x_0.set_update_time(0.10)
         self.qtgui_const_sink_x_0.set_y_axis(-2, 2)
@@ -356,56 +354,37 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         for c in range(0, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
         self._noise_range = Range(0, 100, 1, 50, 200)
-        self._noise_win = RangeWidget(self._noise_range, self.set_noise, 'noise', "counter_slider", float, QtCore.Qt.Horizontal)
+        self._noise_win = RangeWidget(self._noise_range, self.set_noise, 'noise', "counter_slider", float)
         self.top_grid_layout.addWidget(self._noise_win, 0, 0, 1, 1)
         for r in range(0, 1):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self._gain_range = Range(0, 100, 1, 50, 200)
-        self._gain_win = RangeWidget(self._gain_range, self.set_gain, 'gain', "counter_slider", float, QtCore.Qt.Horizontal)
-        self.top_grid_layout.addWidget(self._gain_win, 0, 2, 1, 2)
-        for r in range(0, 1):
-            self.top_grid_layout.setRowStretch(r, 1)
-        for c in range(2, 4):
-            self.top_grid_layout.setColumnStretch(c, 1)
-        self.digital_psk_demod_0 = digital.psk.psk_demod(
-            constellation_points=2,
-            differential=True,
-            samples_per_symbol=2,
-            excess_bw=0.35,
-            phase_bw=6.28/100.0,
-            timing_bw=6.28/100.0,
-            mod_code="gray",
-            verbose=False,
-            log=False)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, phase_bw, rrc_taps, 32, 16, 1.5, 1)
-        self.digital_map_bb_0 = digital.map_bb([0,1])
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, phase_bw, rrc_taps, 32, 16, 1.5, 2)
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(2)
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(phase_bw, 2, False)
         self.digital_constellation_modulator_0 = digital.generic_mod(
             constellation=bpsk_const,
             differential=True,
-            samples_per_symbol=2,
+            samples_per_symbol=4,
             pre_diff_code=True,
             excess_bw=0.35,
             verbose=False,
-            log=False,
-            truncate=False)
-        self.blocks_unpacked_to_packed_xx_0 = blocks.unpacked_to_packed_bb(4, gr.GR_MSB_FIRST)
-        self.blocks_unpack_k_bits_bb_1 = blocks.unpack_k_bits_bb(1)
+            log=False)
+        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(bpsk_const)
+        self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 2)
+        self.blocks_unpacked_to_packed_xx_0_0_0 = blocks.unpacked_to_packed_bb(1, gr.GR_MSB_FIRST)
+        self.blocks_unpacked_to_packed_xx_0_0 = blocks.unpacked_to_packed_bb(8, gr.GR_MSB_FIRST)
         self.blocks_unpack_k_bits_bb_0 = blocks.unpack_k_bits_bb(8)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, samp_rate,True)
         self.blocks_sub_xx_0 = blocks.sub_ff(1)
-        self.blocks_packed_to_unpacked_xx_0 = blocks.packed_to_unpacked_bb(1, gr.GR_MSB_FIRST)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/testFiles/test_file', False, 0, 0)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/testFiles/test_file', True, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/testFiles/test_file_rx', False)
         self.blocks_file_sink_0.set_unbuffered(False)
-        self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, 29)
+        self.blocks_delay_0 = blocks.delay(gr.sizeof_float*1, delay_tx)
         self.blocks_char_to_float_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)
-
 
 
         ##################################################
@@ -416,33 +395,29 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_char_to_float_1, 0), (self.blocks_delay_0, 0))
         self.connect((self.blocks_delay_0, 0), (self.blocks_sub_xx_0, 1))
         self.connect((self.blocks_delay_0, 0), (self.qtgui_time_sink_x_0, 2))
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_packed_to_unpacked_xx_0, 0))
         self.connect((self.blocks_file_source_0, 0), (self.blocks_unpack_k_bits_bb_0, 0))
-        self.connect((self.blocks_packed_to_unpacked_xx_0, 0), (self.digital_constellation_modulator_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.digital_constellation_modulator_0, 0))
         self.connect((self.blocks_sub_xx_0, 0), (self.qtgui_time_sink_x_0, 1))
         self.connect((self.blocks_throttle_0, 0), (self.digital_pfb_clock_sync_xxx_0, 0))
         self.connect((self.blocks_unpack_k_bits_bb_0, 0), (self.blocks_char_to_float_1, 0))
-        self.connect((self.blocks_unpack_k_bits_bb_1, 0), (self.blocks_unpacked_to_packed_xx_0, 0))
-        self.connect((self.blocks_unpacked_to_packed_xx_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.blocks_unpacked_to_packed_xx_0_0, 0), (self.blocks_file_sink_0, 0))
+        self.connect((self.blocks_unpacked_to_packed_xx_0_0_0, 0), (self.blocks_unpacked_to_packed_xx_0_0, 0))
+        self.connect((self.digital_cma_equalizer_cc_0, 0), (self.digital_costas_loop_cc_0, 0))
+        self.connect((self.digital_constellation_decoder_cb_0, 0), (self.digital_diff_decoder_bb_0, 0))
         self.connect((self.digital_constellation_modulator_0, 0), (self.blocks_throttle_0, 0))
-        self.connect((self.digital_costas_loop_cc_0, 0), (self.digital_psk_demod_0, 0))
+        self.connect((self.digital_costas_loop_cc_0, 0), (self.digital_constellation_decoder_cb_0, 0))
         self.connect((self.digital_costas_loop_cc_0, 0), (self.qtgui_const_sink_x_0_0, 0))
         self.connect((self.digital_costas_loop_cc_0, 0), (self.qtgui_time_sink_x_2_0, 0))
         self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_char_to_float_0, 0))
-        self.connect((self.digital_diff_decoder_bb_0, 0), (self.digital_map_bb_0, 0))
-        self.connect((self.digital_map_bb_0, 0), (self.blocks_unpack_k_bits_bb_1, 0))
-        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_costas_loop_cc_0, 0))
+        self.connect((self.digital_diff_decoder_bb_0, 0), (self.blocks_unpacked_to_packed_xx_0_0_0, 0))
+        self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.digital_cma_equalizer_cc_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_const_sink_x_0, 0))
         self.connect((self.digital_pfb_clock_sync_xxx_0, 0), (self.qtgui_time_sink_x_2, 0))
-        self.connect((self.digital_psk_demod_0, 0), (self.digital_diff_decoder_bb_0, 0))
 
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "bpsk_mod")
         self.settings.setValue("geometry", self.saveGeometry())
-        self.stop()
-        self.wait()
-
         event.accept()
 
     def get_sps(self):
@@ -514,23 +489,25 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
     def set_loop_order(self, loop_order):
         self.loop_order = loop_order
 
-    def get_gain(self):
-        return self.gain
-
-    def set_gain(self, gain):
-        self.gain = gain
-
     def get_excess_bw(self):
         return self.excess_bw
 
     def set_excess_bw(self, excess_bw):
         self.excess_bw = excess_bw
 
+    def get_delay_tx(self):
+        return self.delay_tx
+
+    def set_delay_tx(self, delay_tx):
+        self.delay_tx = delay_tx
+        self.blocks_delay_0.set_dly(self.delay_tx)
+
     def get_bpsk_const(self):
         return self.bpsk_const
 
     def set_bpsk_const(self, bpsk_const):
         self.bpsk_const = bpsk_const
+
 
 
 
@@ -549,9 +526,6 @@ def main(top_block_cls=bpsk_mod, options=None):
     tb.show()
 
     def sig_handler(sig=None, frame=None):
-        tb.stop()
-        tb.wait()
-
         Qt.QApplication.quit()
 
     signal.signal(signal.SIGINT, sig_handler)
@@ -561,6 +535,11 @@ def main(top_block_cls=bpsk_mod, options=None):
     timer.start(500)
     timer.timeout.connect(lambda: None)
 
+    def quitting():
+        tb.stop()
+        tb.wait()
+
+    qapp.aboutToQuit.connect(quitting)
     qapp.exec_()
 
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ if __name__ == '__main__':
             print("Warning: failed to XInitThreads()")
 
 from gnuradio import blocks
-import pmt
+import numpy
 from gnuradio import gr
 from gnuradio.filter import firdes
 from gnuradio.fft import window
@@ -79,19 +79,16 @@ class data_packing(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.blocks_unpacked_to_packed_xx_0 = blocks.unpacked_to_packed_bb(8, gr.GR_MSB_FIRST)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/supersonic/GitHub/Post-Shannon-SDR/Examples/BPSK/testFiles/test_file', False, 0, 0)
-        self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_char*1, 'packet2', False)
-        self.blocks_file_sink_1.set_unbuffered(False)
+        self.blocks_file_sink_2 = blocks.file_sink(gr.sizeof_char*1, 'floriandatei', True)
+        self.blocks_file_sink_2.set_unbuffered(False)
+        self.analog_random_source_x_0 = blocks.vector_source_b(list(map(int, numpy.random.randint(255, 256, 10))), True)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_unpacked_to_packed_xx_0, 0))
-        self.connect((self.blocks_unpacked_to_packed_xx_0, 0), (self.blocks_file_sink_1, 0))
+        self.connect((self.analog_random_source_x_0, 0), (self.blocks_file_sink_2, 0))
 
 
     def closeEvent(self, event):
