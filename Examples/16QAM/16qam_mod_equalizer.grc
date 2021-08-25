@@ -10,7 +10,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: eightpsk_mod
+    id: qam_mod
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -134,7 +134,7 @@ blocks:
     coordinate: [1016, 12.0]
     rotation: 0
     state: enabled
-- name: psk_const
+- name: qam_const
   id: variable_constellation
   parameters:
     comment: ''
@@ -144,7 +144,7 @@ blocks:
     rot_sym: '4'
     soft_dec_lut: None
     sym_map: '[0, 1, 3, 2]'
-    type: 8psk
+    type: 16qam
   states:
     bus_sink: false
     bus_source: false
@@ -168,7 +168,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 50e3
+    value: 32e3
   states:
     bus_sink: false
     bus_source: false
@@ -435,7 +435,7 @@ blocks:
     modulus: '1'
     mu: '0.01'
     num_taps: '15'
-    sps: '8'
+    sps: '16'
   states:
     bus_sink: false
     bus_source: false
@@ -449,14 +449,14 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    constellation: psk_const
+    constellation: qam_const
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [760, 468.0]
+    coordinate: [792, 468.0]
     rotation: 0
     state: enabled
 - name: digital_constellation_modulator_0
@@ -465,7 +465,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    constellation: psk_const
+    constellation: qam_const
     differential: 'True'
     excess_bw: '0.35'
     log: 'False'
@@ -489,7 +489,7 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     order: '8'
-    use_snr: 'False'
+    use_snr: 'True'
     w: phase_bw
   states:
     bus_sink: false
@@ -511,7 +511,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1008, 468.0]
+    coordinate: [1024, 468.0]
     rotation: 0
     state: enabled
 - name: digital_pfb_clock_sync_xxx_0
@@ -526,7 +526,7 @@ blocks:
     max_dev: '1.5'
     maxoutbuf: '0'
     minoutbuf: '0'
-    osps: '8'
+    osps: '16'
     sps: sps
     taps: rrc_taps
     type: ccf
@@ -718,7 +718,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [816, 380.0]
+    coordinate: [792, 380.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -1009,7 +1009,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [816, 284.0]
+    coordinate: [792, 276.0]
     rotation: 0
     state: enabled
 - name: virtual_sink_0

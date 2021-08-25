@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Eightpsk Mod
+# Title: Qam Mod
 # Author: Javier Acevedo
 # Copyright: MIT
 # GNU Radio version: 3.8.3.1
@@ -39,12 +39,12 @@ from gnuradio.qtgui import Range, RangeWidget
 
 from gnuradio import qtgui
 
-class eightpsk_mod(gr.top_block, Qt.QWidget):
+class qam_mod(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Eightpsk Mod")
+        gr.top_block.__init__(self, "Qam Mod")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Eightpsk Mod")
+        self.setWindowTitle("Qam Mod")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -62,7 +62,7 @@ class eightpsk_mod(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "eightpsk_mod")
+        self.settings = Qt.QSettings("GNU Radio", "qam_mod")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -79,9 +79,9 @@ class eightpsk_mod(gr.top_block, Qt.QWidget):
         self.nfilts = nfilts = 4
         self.tunning = tunning = 50
         self.taps = taps = [1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]
-        self.samp_rate = samp_rate = 50e3
+        self.samp_rate = samp_rate = 32e3
         self.rrc_taps = rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 45*nfilts)
-        self.psk_const = psk_const = digital.constellation_8psk().base()
+        self.qam_const = qam_const = digital.constellation_16qam().base()
         self.phase_bw = phase_bw = 62.8e-3
         self.ntaps = ntaps = 15
         self.noise = noise = 50
@@ -360,18 +360,18 @@ class eightpsk_mod(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, phase_bw, rrc_taps, 32, 16, 1.5, 8)
-        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(16)
-        self.digital_costas_loop_cc_0 = digital.costas_loop_cc(phase_bw, 8, False)
+        self.digital_pfb_clock_sync_xxx_0 = digital.pfb_clock_sync_ccf(sps, phase_bw, rrc_taps, 32, 16, 1.5, 16)
+        self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(2)
+        self.digital_costas_loop_cc_0 = digital.costas_loop_cc(phase_bw, 8, True)
         self.digital_constellation_modulator_0 = digital.generic_mod(
-            constellation=psk_const,
+            constellation=qam_const,
             differential=True,
             samples_per_symbol=4,
             pre_diff_code=True,
             excess_bw=0.35,
             verbose=False,
             log=False)
-        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(psk_const)
+        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(qam_const)
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 16)
         self.blocks_unpacked_to_packed_xx_0_0_0 = blocks.unpacked_to_packed_bb(1, gr.GR_MSB_FIRST)
         self.blocks_unpacked_to_packed_xx_0_0 = blocks.unpacked_to_packed_bb(8, gr.GR_MSB_FIRST)
@@ -416,7 +416,7 @@ class eightpsk_mod(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "eightpsk_mod")
+        self.settings = Qt.QSettings("GNU Radio", "qam_mod")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -463,11 +463,11 @@ class eightpsk_mod(gr.top_block, Qt.QWidget):
         self.rrc_taps = rrc_taps
         self.digital_pfb_clock_sync_xxx_0.update_taps(self.rrc_taps)
 
-    def get_psk_const(self):
-        return self.psk_const
+    def get_qam_const(self):
+        return self.qam_const
 
-    def set_psk_const(self, psk_const):
-        self.psk_const = psk_const
+    def set_qam_const(self, qam_const):
+        self.qam_const = qam_const
 
     def get_phase_bw(self):
         return self.phase_bw
@@ -512,7 +512,7 @@ class eightpsk_mod(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=eightpsk_mod, options=None):
+def main(top_block_cls=qam_mod, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')
