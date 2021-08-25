@@ -42,7 +42,7 @@ blocks:
     rot_sym: '4'
     soft_dec_lut: None
     sym_map: '[0, 1, 3, 2]'
-    type: bpsk
+    type: qpsk
   states:
     bus_sink: false
     bus_source: false
@@ -435,7 +435,7 @@ blocks:
     modulus: '1'
     mu: '0.01'
     num_taps: '15'
-    sps: '2'
+    sps: '4'
   states:
     bus_sink: false
     bus_source: false
@@ -488,7 +488,7 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    order: '2'
+    order: '4'
     use_snr: 'False'
     w: phase_bw
   states:
@@ -526,7 +526,7 @@ blocks:
     max_dev: '1.5'
     maxoutbuf: '0'
     minoutbuf: '0'
-    osps: '2'
+    osps: '4'
     sps: sps
     taps: rrc_taps
     type: ccf
