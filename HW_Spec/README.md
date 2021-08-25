@@ -19,5 +19,9 @@ Additionally, the user can configure the following parameters:
 
 For more information, please refer to the vendor's documentation in the following [Link](https://files.ettus.com/manual/page_usrp_n3xx.html) and in the following [Link](https://kb.ettus.com/N300/N310).
 
+### Understanding sampling frequency and samples per symbol
+
+Every USRP supports different sample rates 
+
 
 
