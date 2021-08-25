@@ -10,7 +10,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: bpsk_mod
+    id: qpsk_mod
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -32,24 +32,6 @@ options:
     state: enabled
 
 blocks:
-- name: bpsk_const
-  id: variable_constellation
-  parameters:
-    comment: ''
-    const_points: '[-1-1j, -1+1j, 1+1j, 1-1j]'
-    dims: '1'
-    precision: '8'
-    rot_sym: '4'
-    soft_dec_lut: None
-    sym_map: '[0, 1, 3, 2]'
-    type: qpsk
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [16, 244.0]
-    rotation: 0
-    state: true
 - name: delay_tx
   id: variable_qtgui_range
   parameters:
@@ -152,6 +134,24 @@ blocks:
     coordinate: [1016, 12.0]
     rotation: 0
     state: enabled
+- name: qpsk_const
+  id: variable_constellation
+  parameters:
+    comment: ''
+    const_points: '[-1-1j, -1+1j, 1+1j, 1-1j]'
+    dims: '1'
+    precision: '8'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 3, 2]'
+    type: qpsk
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 244.0]
+    rotation: 0
+    state: true
 - name: rrc_taps
   id: variable
   parameters:
@@ -449,7 +449,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    constellation: bpsk_const
+    constellation: qpsk_const
     maxoutbuf: '0'
     minoutbuf: '0'
   states:
@@ -465,7 +465,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    constellation: bpsk_const
+    constellation: qpsk_const
     differential: 'True'
     excess_bw: '0.35'
     log: 'False'

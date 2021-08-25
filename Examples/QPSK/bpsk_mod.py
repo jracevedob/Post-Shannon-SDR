@@ -81,13 +81,13 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.taps = taps = [1.0, 0.25-0.25j, 0.50 + 0.10j, -0.3 + 0.2j]
         self.samp_rate = samp_rate = 50e3
         self.rrc_taps = rrc_taps = firdes.root_raised_cosine(nfilts, nfilts, 1.0/float(sps), 0.35, 45*nfilts)
+        self.qpsk_const = qpsk_const = digital.constellation_qpsk().base()
         self.phase_bw = phase_bw = 62.8e-3
         self.ntaps = ntaps = 15
         self.noise = noise = 50
         self.loop_order = loop_order = 2
         self.excess_bw = excess_bw = 0.350
         self.delay_tx = delay_tx = 25
-        self.bpsk_const = bpsk_const = digital.constellation_qpsk().base()
 
         ##################################################
         # Blocks
@@ -364,14 +364,14 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.digital_diff_decoder_bb_0 = digital.diff_decoder_bb(2)
         self.digital_costas_loop_cc_0 = digital.costas_loop_cc(phase_bw, 4, False)
         self.digital_constellation_modulator_0 = digital.generic_mod(
-            constellation=bpsk_const,
+            constellation=qpsk_const,
             differential=True,
             samples_per_symbol=4,
             pre_diff_code=True,
             excess_bw=0.35,
             verbose=False,
             log=False)
-        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(bpsk_const)
+        self.digital_constellation_decoder_cb_0 = digital.constellation_decoder_cb(qpsk_const)
         self.digital_cma_equalizer_cc_0 = digital.cma_equalizer_cc(15, 1, 0.01, 4)
         self.blocks_unpacked_to_packed_xx_0_0_0 = blocks.unpacked_to_packed_bb(1, gr.GR_MSB_FIRST)
         self.blocks_unpacked_to_packed_xx_0_0 = blocks.unpacked_to_packed_bb(8, gr.GR_MSB_FIRST)
@@ -463,6 +463,12 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.rrc_taps = rrc_taps
         self.digital_pfb_clock_sync_xxx_0.update_taps(self.rrc_taps)
 
+    def get_qpsk_const(self):
+        return self.qpsk_const
+
+    def set_qpsk_const(self, qpsk_const):
+        self.qpsk_const = qpsk_const
+
     def get_phase_bw(self):
         return self.phase_bw
 
@@ -501,12 +507,6 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
     def set_delay_tx(self, delay_tx):
         self.delay_tx = delay_tx
         self.blocks_delay_0.set_dly(self.delay_tx)
-
-    def get_bpsk_const(self):
-        return self.bpsk_const
-
-    def set_bpsk_const(self, bpsk_const):
-        self.bpsk_const = bpsk_const
 
 
 

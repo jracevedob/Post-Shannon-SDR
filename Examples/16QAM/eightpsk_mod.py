@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Bpsk Mod
+# Title: Eightpsk Mod
 # Author: Javier Acevedo
 # Copyright: MIT
 # GNU Radio version: 3.8.3.1
@@ -39,12 +39,12 @@ from gnuradio.qtgui import Range, RangeWidget
 
 from gnuradio import qtgui
 
-class bpsk_mod(gr.top_block, Qt.QWidget):
+class eightpsk_mod(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Bpsk Mod")
+        gr.top_block.__init__(self, "Eightpsk Mod")
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Bpsk Mod")
+        self.setWindowTitle("Eightpsk Mod")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -62,7 +62,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "bpsk_mod")
+        self.settings = Qt.QSettings("GNU Radio", "eightpsk_mod")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -416,7 +416,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "bpsk_mod")
+        self.settings = Qt.QSettings("GNU Radio", "eightpsk_mod")
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
@@ -512,7 +512,7 @@ class bpsk_mod(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=bpsk_mod, options=None):
+def main(top_block_cls=eightpsk_mod, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')
