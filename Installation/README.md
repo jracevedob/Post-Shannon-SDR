@@ -2,7 +2,7 @@
 <img alt="Flow" src="https://github.com/jracevedob/Post-Shannon-SDR/blob/dev/Installation/Uhd_GNURADIO.png" width="800">
 </p>
 
-The software stack for programming Ettus Research Devices in conjunction with GNU Radio is mainly composed by applications based on Python wrappers of C++ signal processing functions. Those applications run on top of operating systems that establish communication with the hardware through drivers.
+The software stack for programming Ettus Research's Devices in conjunction with GNU Radio is mainly composed by applications based on Python wrappers of C++ signal processing functions. From the figure above, it is depicted that there are many other programs to flash the USRPs such as MatLab or LabView, but all of them are out of the scope of this work, where only open source software is under use. Those applications run on top of operating systems that establish communication with the hardware through drivers. 
 
 For the utilization of the USRP N310 together with GNURadio in GNU-Linux Ubuntu 20.04, it is necessary to install the following dependencies and packages:
 
@@ -10,7 +10,7 @@ For the utilization of the USRP N310 together with GNURadio in GNU-Linux Ubuntu 
 sudo apt-get -y install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool fort77 g++ gir1.2-gtk-3.0 git gobject-introspection gpsd gpsd-clients inetutils-tools libasound2-dev libboost-all-dev libcomedi-dev libcppunit-dev libfftw3-bin libfftw3-dev libfftw3-doc libfontconfig1-dev libgmp-dev libgps-dev libgsl-dev liblog4cpp5-dev libncurses5 libncurses5-dev libpulse-dev libqt5opengl5-dev libqwt-qt5-dev libsdl1.2-dev libtool libudev-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev libxi-dev libxrender-dev libzmq3-dev libzmq5 ncurses-bin python3-cheetah python3-click python3-click-plugins python3-click-threading python3-dev python3-docutils python3-gi python3-gi-cairo python3-gps python3-lxml python3-mako python3-numpy python3-numpy-dbg python3-opengl python3-pyqt5 python3-requests python3-scipy python3-setuptools python3-six python3-sphinx python3-yaml python3-zmq swig wget
 ```
 
-* **GNU Radio Installation** -  In Ubuntu 20.04, the installation of GNU Radio can be done through the package manager PPA by typing the following commands in the terminal. In this case, the GNU Radio version is the latest from the master branch. The user can install other versions according to his needs following the tutorial in this [Link](https://wiki.gnuradio.org/index.php/InstallingGR).
+* **GNU Radio Installation** -  In Ubuntu 20.04, the installation of GNU Radio can be done through the package manager PPA by typing the following commands in the terminal. In this case, the GNU Radio version is the latest from the master branch. The user can install other versions according to his/her needs following the tutorial in the following [Link](https://wiki.gnuradio.org/index.php/InstallingGR).
 
 ```
 sudo add-apt-repository ppa:gnuradio/gnuradio-master
@@ -83,7 +83,6 @@ Finally, you can also install the UHD driver directly from the source code provi
 git clone https://github.com/EttusResearch/uhd
 cd uhd
 git checkout v3.15.0.0
-git submodule update --init --recursive
 cd host
 mkdir build
 cd build
@@ -93,6 +92,16 @@ make test
 sudo make install
 sudo ldconfig
 export LD_LIBRARY_PATH=/usr/local/lib
+```
+Linux-based systems contain enviormental variables, which are dinamic values stored within the systems to be used for applications launched from shell terminals. To make sure that the UHD library path can be found when GNU Radio is executed, it nes necessary to include the library in the bashrc file of your home directory. Open a terminal and type:
+
+```
+nano $HOME/.bashrc
+```
+
+Then, add the following line at the botton of the file:
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ```
 
 If the installation was successful, then by typing the command **uhd_find_devices** in the terminal, you should get the following message:
