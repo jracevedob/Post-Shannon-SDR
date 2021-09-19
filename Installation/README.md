@@ -159,4 +159,4 @@ Device Address:
 ```
 
 
-* **RF Network-on-Chip** - Acceleration of the hardware modules 
+* **RF Network-on-Chip** - The addition of hardware acceleration modules consists of an offloading of high-paralellizable functions such as FFT and IFFF before and after down- and upsampling, respectively.
