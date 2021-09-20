@@ -33,10 +33,10 @@ Some examples about the simulation of different modulation schemes is provided
 
 ### Implementation
 
-You can find the implementation of the 
+You can find the implementation of the functional C++ signal processing blocks in [MIT license](./Modules). The implementation of each block and its subsequent addition to GNU Radio Companion is explicitely shown for every block. The majority of the blocks has been used for time synchronizaiton and the implementation of old dropped GNU Radio blocks.
 
 ### Hardware acceleration 
-You can find how to accelerate GNU Radio blocks using the built-in Zynq
+You can find how to accelerate GNU Radio blocks using the built-in Xilinx Zynq Multi-processor System-on-Chip (MPSoC). All the acceleration design are based on the Ettus Research Radio Frequency Network-on-Chip (RFNoC) architecture. For more details, please refer to [RFNoC](./RFNoC).
 
 ### Vagrant
 
