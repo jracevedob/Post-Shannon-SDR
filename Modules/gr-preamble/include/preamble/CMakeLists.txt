@@ -23,5 +23,5 @@
 ########################################################################
 install(FILES
     api.h
-    DESTINATION include/preamble
+    preamble.h DESTINATION include/preamble
 )

@@ -24,6 +24,7 @@
 include(GrPlatform) #define LIB_SUFFIX
 
 list(APPEND preamble_sources
+    preamble_impl.cc
 )
 
 set(preamble_sources "${preamble_sources}" PARENT_SCOPE)
@@ -67,6 +68,7 @@ include(GrTest)
 #include_directories()
 # List all files that contain Boost.UTF unit tests here
 list(APPEND test_preamble_sources
+qa_preamble.cc
 )
 # Anything we need to link to for the unit tests go here
 list(APPEND GR_TEST_TARGET_DEPS gnuradio-preamble)
