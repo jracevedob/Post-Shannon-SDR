@@ -63,6 +63,23 @@ abstract = {In this chapter, we extend the emulator ComNetsEmu used throughout t
 }
 ```
 
+The latest publication of this repository has been submitted to the IEEE CSCN 2021 Conference. As soon as the authors receive a notification about the acceptance of the paper, we will provide further details to find our contribution.
+
+``` 
+@INPROCEEDINGS{ACEVEDO,
+  author={Acevedo, Javier and Ulbircht, Marian and Gnuyen, Giang and Fitzek, Frank H. P.},
+  booktitle={2021 IEEE Conference on Standard for Communication and Networking }, 
+  title={Virtualization of the Radio Unit Resources for theNext Generation of Radio Access Networks}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={1-6},
+  doi={}}
+
+```
+
+
+
 ## Contributing
 
 This project exists thanks to all people who contribute.
@@ -92,4 +109,4 @@ This project is licensed under the [MIT license](./LICENSE).
 * **12.08.2021** - *Release of first set of modulation examples and build of functional C++ blocks*
 * **11.08.2021** - *Spektrum Analyzer updated*
 * **14.08.2021** - *Hardware acceleration deployment for the C++ integrated blocks*
-
+* **27.10.2021** - *Submission of first paper to the IEEE CSCN 2021 conference *
