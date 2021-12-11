@@ -68,6 +68,7 @@ include(GrTest)
 #include_directories()
 # List all files that contain Boost.UTF unit tests here
 list(APPEND test_tutorial_sources
+qa_my_qpsk_demod_cb.cc
 )
 # Anything we need to link to for the unit tests go here
 list(APPEND GR_TEST_TARGET_DEPS gnuradio-tutorial)

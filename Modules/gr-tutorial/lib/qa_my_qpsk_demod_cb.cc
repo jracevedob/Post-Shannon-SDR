@@ -18,35 +18,21 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#ifndef INCLUDED_TUTORIAL_MY_QPSK_DEMOD_CB_IMPL_H
-#define INCLUDED_TUTORIAL_MY_QPSK_DEMOD_CB_IMPL_H
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <tutorial/my_qpsk_demod_cb.h>
+#include <gnuradio/attributes.h>
+#include <boost/test/unit_test.hpp>
 
 namespace gr {
   namespace tutorial {
 
-    class my_qpsk_demod_cb_impl : public my_qpsk_demod_cb
+    BOOST_AUTO_TEST_CASE(test_my_qpsk_demod_cb_t1)
     {
-     private:
-      // Nothing to declare in this block.
+      // Put test here
+    }
 
-     public:
-      my_qpsk_demod_cb_impl(bool gray_code);
-      ~my_qpsk_demod_cb_impl();
-
-      // Where all the action really happens
-      void forecast (int noutput_items, gr_vector_int &ninput_items_required);
-
-      int general_work(int noutput_items,
-           gr_vector_int &ninput_items,
-           gr_vector_const_void_star &input_items,
-           gr_vector_void_star &output_items);
-
-    };
-
-  } // namespace tutorial
-} // namespace gr
-
-#endif /* INCLUDED_TUTORIAL_MY_QPSK_DEMOD_CB_IMPL_H */
-
+  } /* namespace tutorial */
+} /* namespace gr */

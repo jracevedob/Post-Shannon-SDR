@@ -1,6 +1,7 @@
 /* -*- c++ -*- */
 /*
- * Copyright 2021 gnuradio.org.
+ * Copyright 2021 jacevedo- TUD ComNets
+ *
  *
  * This is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
