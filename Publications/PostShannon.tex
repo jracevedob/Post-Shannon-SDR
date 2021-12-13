@@ -1,0 +1,134 @@
+%%%% IEEE DEFAULTS
+
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+%\usepackage{cite} % should not be used with natbib
+%\usepackage{amsmath,amssymb,amsfonts}
+%\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+\usepackage{relsize}
+\usepackage[font=small]{caption}
+%\usepackage{textcomp}
+%foot note
+\usepackage[bottom]{footmisc}
+\usepackage{xcolor}
+%\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%%%% USER SETTINGS
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{hidelinks}% doppelt hält besser
+%\usepackage[acronym]{glossaries} % https://www.overleaf.com/learn/latex/Glossaries#Acronyms
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\input{acronym}
+
+\usepackage{hyperref}
+
+\usepackage{csquotes}
+\usepackage[numbers]{natbib}
+\bibliographystyle{IEEEtranN}
+\renewcommand{\bibfont}{\footnotesize} % for IEEE bibfont size
+\usepackage[per-mode=symbol-or-fraction]{siunitx}
+%\usepackage{flushend}
+%\bstctlcite{bibliography:BSTcontrol}
+\usepackage{array}
+\renewcommand\arraystretch{1.25}
+\usepackage{booktabs}
+
+\renewcommand{\figurename}{Figure}
+\newcommand{\cgn}[1]{\textcolor{blue}{(GN): #1}}
+
+% todo notes:
+\setlength {\marginparwidth}{2cm}
+\usepackage{todonotes}
+\presetkeys{todonotes}{inline}{}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes,shapes.geometric,shapes.misc}
+\usetikzlibrary{decorations.pathreplacing,calc,shadows.blur,shapes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\tikzstyle{tikzfig}=[baseline=-0.25em,scale=0.5]
+\usepackage{color}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\title{Need for Speed: Hardware-based Radios for virtualized Radio Access Networks}
+\author{
+	\IEEEauthorblockN{
+		Javier Acevedo\IEEEauthorrefmark{1},
+		Marian Ulbricht\IEEEauthorrefmark{1},
+		Florian Grabs\IEEEauthorrefmark{1},
+		Andreas Igno Grohmann\IEEEauthorrefmark{1},
+		Giang T. Nguyen\IEEEauthorrefmark{2}\IEEEauthorrefmark{4},\\ % needed to line break because of too many authors :)
+		Patrick Seeling\IEEEauthorrefmark{3},
+		and
+		Frank H. P. Fitzek\IEEEauthorrefmark{1}\IEEEauthorrefmark{4}
+	}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{1} Deutsche Telekom Chair of Communication Networks, TU Dresden
+		}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{2} Chair of Haptic Communication Systems, TU Dresden
+		}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{3} Department of Computer Science, Central Michigan University
+		}
+	\IEEEauthorblockA{
+		\IEEEauthorrefmark{4} Centre for Tactile Internet with Human-in-the-Loop (CeTI)
+		}
+	E-mails: \{firstname.lastname\}@tu-dresden.de\IEEEauthorrefmark{1}\IEEEauthorrefmark{2} ;	\{firstname.lastname\}@cmich.edu\IEEEauthorrefmark{3}
+}
+
+\maketitle
+
+% enable page numbers, remove for final version
+\thispagestyle{plain}
+\pagestyle{plain}
+
+\begingroup\renewcommand\thefootnote{\textsection}
+
+\endgroup
+
+\input{sections/00_abstract}
+
+\begin{IEEEkeywords}
+Hardware Accelerator, Haptic Communication, Tactile Internet, Cryptographic Algorithms, Human-machine Interaction, Ultra-low Latency, High-performance Computing, Network Security Functions. 
+\end{IEEEkeywords}
+
+
+\input{sections/10_introduction}
+\input{sections/20_technical_background}
+\input{sections/30_related_work}
+\input{sections/40_methodology}
+\input{sections/50_evaluation}
+\input{sections/60_outlook}
+\input{sections/70_conclusions}
+
+%\input{70_conclusions}
+
+\section*{Acknowledgement}
+This work was funded by the German Research Foundation (DFG, Deutsche Forschungsgemeinschaft) as part of Germany’s Excellence Strategy – EXC 2050/1 – Project ID 390696704 – Cluster of Excellence “Centre for Tactile Internet with Human-in-the-Loop” (CeTI) of Technische Universität Dresden.
+
+We also would like to thank Juan Cabrera and Riccardo Bassoli for their valuable insights during the implementation of the results presented in this work.
+
+%Print bibliography with IEEE Tran style
+\bibliography{bibliography}
+
+\end{document}
